@@ -1,0 +1,35 @@
+<div class="input-panel">
+    <div class="panel-header">
+        <h2>Options</h2>
+        <span class="option-count">{{ wheelService.options().length }} items</span>
+    </div>
+
+    <div class="input-section">
+        <label for="options-input">Enter your options</label>
+        <p class="input-hint">Separate with commas, semicolons, or new lines</p>
+        <textarea id="options-input" [(ngModel)]="inputText" (input)="onInputChange()"
+            placeholder="Pizza, Burger, Sushi..." rows="5"></textarea>
+    </div>
+
+    <div class="button-group">
+        <button class="btn btn-secondary" (click)="addSampleOptions()">
+            Sample
+        </button>
+        <button class="btn btn-secondary" (click)="clearInput()">
+            Clear
+        </button>
+    </div>
+
+    <div class="options-preview">
+        <h3>Preview</h3>
+        <div class="chips-container">
+            @for (option of wheelService.options(); track option; let i = $index) {
+            <span class="chip" [style.animation-delay]="i * 0.03 + 's'">
+                {{ option }}
+            </span>
+            } @empty {
+            <p class="empty-message">No options added yet</p>
+            }
+        </div>
+    </div>
+</div>

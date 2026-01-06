@@ -1,0 +1,13 @@
+<div class="wheel-container">
+  <div class="pointer"></div>
+
+  <div class="wheel-wrapper" [style.transform]="'rotate(' + wheelService.rotation() + 'deg)'"
+    [class.spinning]="wheelService.isSpinning()">
+    <canvas #wheelCanvas></canvas>
+  </div>
+
+  <button class="spin-button" (click)="spin()"
+    [disabled]="wheelService.isSpinning() || wheelService.options().length === 0">
+    {{ wheelService.isSpinning() ? 'Spinning...' : 'SPIN' }}
+  </button>
+</div>

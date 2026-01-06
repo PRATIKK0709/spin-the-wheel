@@ -1,0 +1,187 @@
+.input-panel {
+    background: #FFFFFF;
+    border-left: 1px solid #EEEEEE;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #F0F0F0;
+    flex-shrink: 0;
+}
+
+.panel-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin: 0;
+}
+
+.option-count {
+    font-size: 0.8rem;
+    color: #888888;
+    background: #F5F5F5;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+}
+
+.input-section {
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.input-section label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin-bottom: 0.2rem;
+}
+
+.input-hint {
+    font-size: 0.75rem;
+    color: #AAAAAA;
+    margin: 0 0 0.5rem 0;
+}
+
+.input-section textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #1A1A1A;
+    background: #FAFAFA;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    resize: none;
+    transition: all 0.2s ease;
+}
+
+.input-section textarea:focus {
+    outline: none;
+    border-color: #333333;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.input-section textarea::placeholder {
+    color: #BBBBBB;
+}
+
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary {
+    background: #F0F0F0;
+    color: #333333;
+}
+
+.btn-secondary:hover {
+    background: #E5E5E5;
+}
+
+.options-preview {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.options-preview h3 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #999999;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+}
+
+.chips-container {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-content: flex-start;
+    padding-right: 0.25rem;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    color: #333333;
+    background: #F8F9FA;
+    border: 1px solid #E8E8E8;
+    border-radius: 16px;
+    animation: fadeIn 0.3s ease forwards;
+    opacity: 0;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.empty-message {
+    color: #BBBBBB;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Custom scrollbar for chips container */
+.chips-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chips-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chips-container::-webkit-scrollbar-thumb {
+    background: #E0E0E0;
+    border-radius: 2px;
+}
+
+.chips-container::-webkit-scrollbar-thumb:hover {
+    background: #D0D0D0;
+}
+
+@media (max-width: 768px) {
+    .input-panel {
+        border-left: none;
+        border-top: 1px solid #EEEEEE;
+        padding: 1.25rem;
+    }
+}

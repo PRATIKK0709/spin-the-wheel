@@ -1,0 +1,23 @@
+<main class="app-container">
+  <!-- Fullscreen confetti canvas -->
+  <canvas #confettiCanvas class="confetti-canvas"></canvas>
+
+  <section class="wheel-section">
+    <header class="app-header">
+      <h1>Spin The Wheel</h1>
+      @if (wheelService.winner()) {
+      <p class="winner-text">
+        <span class="winner-label">Winner:</span>
+        <span class="winner-name">{{ wheelService.winner() }}</span>
+      </p>
+      } @else {
+      <p class="subtitle">Add your options and let fate decide</p>
+      }
+    </header>
+    <app-wheel></app-wheel>
+  </section>
+
+  <aside class="input-section">
+    <app-input-panel></app-input-panel>
+  </aside>
+</main>
