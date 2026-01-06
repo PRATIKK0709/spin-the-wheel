@@ -88,20 +88,33 @@
     flex: 1;
     padding: 0.6rem 0.75rem;
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.btn-secondary {
-    background: #F0F0F0;
-    color: #333333;
+.btn-sample {
+    background: linear-gradient(135deg, #E8FFF8 0%, #95E1D3 50%, #4ECDC4 100%);
+    color: #1A1A1A;
+    box-shadow: 0 3px 10px rgba(78, 205, 196, 0.25);
 }
 
-.btn-secondary:hover {
-    background: #E5E5E5;
+.btn-sample:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.35);
+}
+
+.btn-clear {
+    background: linear-gradient(135deg, #FFF0F0 0%, #FCBAD3 50%, #F38181 100%);
+    color: #1A1A1A;
+    box-shadow: 0 3px 10px rgba(243, 129, 129, 0.25);
+}
+
+.btn-clear:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(243, 129, 129, 0.35);
 }
 
 .options-preview {
@@ -136,9 +149,10 @@
     display: inline-block;
     padding: 0.4rem 0.75rem;
     font-size: 0.8rem;
-    color: #333333;
-    background: #F8F9FA;
-    border: 1px solid #E8E8E8;
+    font-weight: 500;
+    color: #1A1A1A;
+    background: linear-gradient(135deg, #F0F0FF 0%, #E8E8FF 50%, #DDD8FF 100%);
+    border: 1px solid #D8D0FF;
     border-radius: 16px;
     animation: fadeIn 0.3s ease forwards;
     opacity: 0;
@@ -146,6 +160,7 @@
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    box-shadow: 0 2px 6px rgba(170, 150, 218, 0.15);
 }
 
 .empty-message {
