@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WheelService } from '../services/wheel.service';
@@ -15,6 +15,16 @@ export class InputPanelComponent {
     inputText = 'Option 1, Option 2, Option 3';
 
     constructor() {
+        effect(() => {
+            const options = this.wheelService.options();
+            const currentParsed = this.wheelService.parseInput(this.inputText);
+
+            // Sync input text if options change externally (e.g. winner removed)
+            if (JSON.stringify(options) !== JSON.stringify(currentParsed)) {
+                this.inputText = options.join('\n');
+            }
+        });
+
         // Initialize with default options
         this.updateOptions();
     }

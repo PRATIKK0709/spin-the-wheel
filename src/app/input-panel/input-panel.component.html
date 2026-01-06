@@ -20,6 +20,14 @@
         </button>
     </div>
 
+    <div class="settings-section">
+        <label class="checkbox-label">
+            <input type="checkbox" [checked]="wheelService.shouldRemoveWinner()"
+                (change)="wheelService.toggleRemoveWinner()">
+            Remove winner after spin
+        </label>
+    </div>
+
     <div class="options-preview">
         <h3>Preview</h3>
         <div class="chips-container">

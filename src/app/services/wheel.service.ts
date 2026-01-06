@@ -25,11 +25,14 @@ export class WheelService {
   private _rotation = signal<number>(0);
   private _showConfetti = signal<boolean>(false);
 
+  private _shouldRemoveWinner = signal<boolean>(false);
+
   options = computed(() => this._options());
   winner = computed(() => this._winner());
   isSpinning = computed(() => this._isSpinning());
   rotation = computed(() => this._rotation());
   showConfetti = computed(() => this._showConfetti());
+  shouldRemoveWinner = computed(() => this._shouldRemoveWinner());
 
   // Confetti colors - vibrant celebration colors
   private confettiColors = [
@@ -41,10 +44,12 @@ export class WheelService {
 
   setOptions(options: string[]) {
     const filtered = options.filter(opt => opt.trim().length > 0);
-    if (filtered.length > 0) {
-      this._options.set(filtered);
-      this._winner.set(null);
-    }
+    this._options.set(filtered);
+    this._winner.set(null);
+  }
+
+  toggleRemoveWinner() {
+    this._shouldRemoveWinner.update(v => !v);
   }
 
   parseInput(input: string): string[] {
@@ -86,6 +91,10 @@ export class WheelService {
         this._winner.set(winner);
         this._isSpinning.set(false);
         this._showConfetti.set(true);
+
+        if (this._shouldRemoveWinner()) {
+          this._options.update(opts => opts.filter((_, i) => i !== winnerIndex));
+        }
 
         setTimeout(() => {
           this._showConfetti.set(false);
