@@ -22,17 +22,21 @@
 }
 
 .wheel-wrapper {
-  transition: none;
   will-change: transform;
   transform-origin: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
 }
 
 .wheel-wrapper.spinning {
-  transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  /* No additional styles needed here as transform is handled by inline style */
 }
 
 .wheel-wrapper canvas {
-  display: block;
+  border-radius: 50%;
 }
 
 .spin-button {

@@ -26,6 +26,8 @@ export class WheelService {
   private _showConfetti = signal<boolean>(false);
 
   private _shouldRemoveWinner = signal<boolean>(false);
+  private _isRemoving = signal<boolean>(false);
+  private _winnerIndex = signal<number>(-1);
 
   options = computed(() => this._options());
   winner = computed(() => this._winner());
@@ -33,6 +35,8 @@ export class WheelService {
   rotation = computed(() => this._rotation());
   showConfetti = computed(() => this._showConfetti());
   shouldRemoveWinner = computed(() => this._shouldRemoveWinner());
+  isRemoving = computed(() => this._isRemoving());
+  winnerIndex = computed(() => this._winnerIndex());
 
   // Confetti colors - vibrant celebration colors
   private confettiColors = [
@@ -46,10 +50,21 @@ export class WheelService {
     const filtered = options.filter(opt => opt.trim().length > 0);
     this._options.set(filtered);
     this._winner.set(null);
+    this._winnerIndex.set(-1);
   }
 
   toggleRemoveWinner() {
     this._shouldRemoveWinner.update(v => !v);
+  }
+
+  completeRemoval() {
+    const idx = this._winnerIndex();
+    if (idx !== -1) {
+      this._options.update(opts => opts.filter((_, i) => i !== idx));
+      this._winner.set(null);
+      this._winnerIndex.set(-1);
+    }
+    this._isRemoving.set(false);
   }
 
   parseInput(input: string): string[] {
@@ -69,7 +84,9 @@ export class WheelService {
 
       this._isSpinning.set(true);
       this._winner.set(null);
+      this._winnerIndex.set(-1);
       this._showConfetti.set(false);
+      this._isRemoving.set(false);
 
       const options = this._options();
       const segmentAngle = 360 / options.length;
@@ -89,11 +106,16 @@ export class WheelService {
         const winner = options[winnerIndex];
 
         this._winner.set(winner);
+        this._winnerIndex.set(winnerIndex);
         this._isSpinning.set(false);
         this._showConfetti.set(true);
 
         if (this._shouldRemoveWinner()) {
-          this._options.update(opts => opts.filter((_, i) => i !== winnerIndex));
+          // Delay removal start to allow user to see the winner on the wheel
+          setTimeout(() => {
+            this._isRemoving.set(true);
+            // Component will handle animation and call completeRemoval()
+          }, 4000);
         }
 
         setTimeout(() => {
